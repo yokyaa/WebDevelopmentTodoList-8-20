@@ -1,0 +1,29 @@
+body{
+background-color:#2C3639;}
+
+h1, h2, h3, h4, h5, h6, p,.control-label , .time{
+color:#A27B5C;}
+
+.done{
+color:#DCD7C9}
+
+.undone{
+color:#E8C4C4}
+
+.update a, .delete a{
+color:#E8C4C4;}
+
+.update, .delete{
+color:#E8C4C4;}
+
+
+.todo{
+font-weight:400;
+font-family:Ubuntu;
+}
+hr {
+ border: 1px solid;
+ width:1000px;
+ color:#E8C4C4;
+
+}

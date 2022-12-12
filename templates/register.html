@@ -1,0 +1,40 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+{% include "header.html" %}
+ <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1583028828338-309b4b600d60?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Start planning your life!</h1>
+            <span class="subheading">Register</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<div class="container">
+    <div class="row">
+
+      <div class="col-lg-8 col-md-10 mx-auto content">
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+      <p style="color:red;">{{ message }}<p>
+        {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+{{ wtf.quick_form(form, novalidate=True, button_map={"submit": "secondary"}) }}
+
+             </div>
+    </div>
+  </div>
+<div class="container bottom" style="padding-bottom:15rem;"> </div>
+<br>
+{% endblock %}

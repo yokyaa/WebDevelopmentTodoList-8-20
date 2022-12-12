@@ -1,0 +1,91 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<header class="masthead">
+
+    {% include "header.html" %}
+
+
+
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1> Todo List</h1>
+                    <h3>Plan your life</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<div class="row">
+    <div class="col-lg-6 col-md-10 mx-auto">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+        {% for message in messages %}
+        <p style="color:red;">{{ message }}
+        <p>
+            {% endfor %}
+
+            {% endif %}
+            {% endwith %}
+
+        <div class="form-group">
+
+            {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "secondary"}) }}
+
+
+
+            {% if current_user.is_authenticated%}
+            {% for todo in todo_list %}
+            <div class="container todo" style='padding-top:3rem;'>
+                <div class="row">
+                    <div class="col lg-6 todo">
+                        <h1> Todo </h1>
+                        <p>{{ todo.title }}</p></div>
+                    <div class="col lg-6 time">
+                        <h1>End time</h1>
+{{ todo.date }}
+                        </div>
+                </div>
+            </div>
+            {% if todo.complete == False %}
+
+
+            <div class="row">
+                <div class="col lg-4">
+                    <h1 class="undone">Not completed</h1>
+                    {% else %}
+                </div>
+                <div class="row">
+                    <div class="col lg-4">
+                        <h1 class="done">Completed</h1><br>
+                        {% endif %}
+                    </div>
+                    <div class="col lg-4 update">
+                        <i class="fa-solid fa-check" style="padding:1.5rem;"><a
+                                href="{{ url_for('update',todo_id=todo.id) }}">Update</a></i> <br>
+                    </div>
+                    <div class="col lg-4 delete">
+                        <i class="fa-solid fa-trash" style="padding:1.5rem;"><a
+                                href="{{ url_for('delete',todo_id=todo.id) }}">Delete</a></i>
+                        <hr>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div class="container bottom" style="padding-bottom:15rem;"> </div>
+
+
+{% endblock %}
+<hr>
